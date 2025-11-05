@@ -1,0 +1,54 @@
+body {
+    background: url("../images/background.jpeg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* darken background */
+    z-index: 0;
+}
+
+nav, footer, .container {
+    position: relative;
+    z-index: 1;
+}
+.stats-box {
+    background: rgba(255, 255, 255, 0.4); /* lighter, more transparent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #000;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.stats-box p {
+    font-weight: 500;
+}
+
+.intro-box {
+    background: rgba(255, 255, 255, 0.4); /* lighter transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #000;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.stats-title-box {
+    background: rgba(255, 255, 255, 0.4); /* translucent white */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 12px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* keeps it neatly centered */
+}
+

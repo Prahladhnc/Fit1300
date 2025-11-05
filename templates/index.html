@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center py-5">
+
+    <!-- Logos -->
+    <div class="d-flex justify-content-center align-items-center mb-4 gap-4 flex-wrap">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="BMS College Logo" height="100" class="rounded shadow-sm">
+        <img src="{{ url_for('static', filename='images/bmsce_ncc.jpg') }}" alt="NCC Logo" height="100" class="rounded shadow-sm">
+    </div>
+
+    <div class="intro-box text-center text-white p-4 rounded shadow-lg mx-auto mt-5" style="max-width: 800px;">
+        <h1 class="display-4 fw-bold text-primary">FIT@1300</h1>
+        <h3 class="fw-light text-secondary mb-4">by BMSCE NCC</h3>
+    
+        <p class="lead mb-4 text-dark">
+            Welcome to <strong>FIT@1300</strong> — a fitness initiative by <strong>BMSCE NCC</strong>.<br>
+            We track every stride, ride, and milestone together through Strava.
+        </p>
+        <p class="text-dark">For more details, click here 
+            <a href="https://www.strava.com/clubs/1810259" target="_blank" class="fw-bold text-primary">FIT@1300</a>
+        </p>
+    </div>
+    
+    <!-- Animated Stats -->
+    <div class="stats-box text-center mt-5 p-4 rounded shadow-lg mx-auto" style="max-width: 900px;">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mx-3">
+                <h2 class="fw-bold text-success"><span id="runDistance">0</span> km</h2>
+                <p>Total Distance Run</p>
+            </div>
+            <div class="col-md-3 mx-3">
+                <h2 class="fw-bold text-primary"><span id="rideDistance">0</span> km</h2>
+                <p>Total Distance Cycled</p>
+            </div>
+            <div class="col-md-3 mx-3">
+                <h2 class="fw-bold text-danger"><span id="totalAthletes">0</span></h2>
+                <p>Total Athletes</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const stats = {
+            run: {{ total_run_km|default(0) }},
+            ride: {{ total_ride_km|default(0) }},
+            athletes: {{ total_athletes|default(0) }}
+        };
+    
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                obj.textContent = Math.floor(progress * (end - start) + start);
+                if (progress < 1) window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
+        }
+    
+        animateValue("runDistance", 0, stats.run, 1200);
+        animateValue("rideDistance", 0, stats.ride, 1200);
+        animateValue("totalAthletes", 0, stats.athletes, 1200);
+    });
+    </script>
+    {% endblock %}

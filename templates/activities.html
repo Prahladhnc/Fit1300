@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center mb-4 text-primary">Recent Activities</h2>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Athlete</th>
+            <th>Activity</th>
+            <th>Type</th>
+            <th>Distance (km)</th>
+            <th>Elapsed Time (min)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in activities %}
+        <tr>
+            <td>{{ a.athlete_name }}</td>
+            <td>{{ a.name }}</td>
+            <td>{{ a.type }}</td>
+            <td>{{ "%.2f"|format(a.distance/1000 if a.distance else 0) }}</td>
+            <td>{{ "%.1f"|format(a.elapsed_time/60 if a.elapsed_time else 0) }}</td>
+            <td>{{ a.start_date.strftime("%Y-%m-%d") if a.start_date else "N/A" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
