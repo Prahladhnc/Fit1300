@@ -52,3 +52,7 @@ nav, footer, .container {
     display: inline-block; /* keeps it neatly centered */
 }
 
+.rally-box {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(3px);
+}

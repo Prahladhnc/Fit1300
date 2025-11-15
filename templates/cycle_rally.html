@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="rally-box p-4 mb-4 rounded shadow">
+    <h1 class="text-center text-primary mb-3">Cycle Rally 2025</h1>
+    <h4 class="text-center text-secondary">23 November – 2 December</h4>
+
+    <p class="mt-4">
+        We are conducting a 10-day Cycle Rally starting from <strong>BMS College of Engineering</strong>,
+        covering important NCC Group Headquarters across the Karnataka & Goa Directorate.
+        Our cadets will cycle across major districts, spreading awareness and showcasing the spirit of NCC.
+    </p>
+</div>
+
+<div class="rally-box p-4 mb-4 rounded shadow">
+    <h3 class="text-primary mb-3">🏁 Route Map</h3>
+
+    <ul class="list-group mb-4">
+        <li class="list-group-item">1. Bangalore</li>
+        <li class="list-group-item">2. Mysore</li>
+        <li class="list-group-item">3. Madikeri</li>
+        <li class="list-group-item">4. Mangalore</li>
+        <li class="list-group-item">5. Udupi</li>
+        <li class="list-group-item">6. Murudeshwar</li>
+        <li class="list-group-item">7. Sirsi</li>
+        <li class="list-group-item">8. Haveri</li>
+        <li class="list-group-item">9. Davanagere</li>
+        <li class="list-group-item">10. Tumkur → Bangalore</li>
+    </ul>
+
+    <div class="text-center">
+        <img src="{{ url_for('static', filename='images/daywiseplan.png') }}" 
+             class="img-fluid rounded shadow" 
+             alt="Daywise Route Plan">
+    </div>
+</div>
+
+<div class="rally-box p-4 mb-4 rounded shadow">
+    <h3 class="text-primary mb-3">🎯 Purpose of the Cycle Rally</h3>
+
+    <p>Our rally highlights four major goals:</p>
+
+    <ul class="list-group mb-4">
+        <li class="list-group-item">1. Encourage a Fit India</li>
+        <li class="list-group-item">2. Promote Environmental Awareness</li>
+        <li class="list-group-item">3. Promote Adventure Activities</li>
+        <li class="list-group-item">4. Inspire Youth to Join NCC</li>
+    </ul>
+
+    <div class="text-center">
+        <img src="{{ url_for('static', filename='images/purpose.png') }}" 
+             class="img-fluid rounded shadow" 
+             alt="Purpose of Rally">
+    </div>
+</div>
+
+{% endblock %}

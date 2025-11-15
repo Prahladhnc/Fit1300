@@ -66,6 +66,9 @@ def show_stats():
     session.close()
     return render_template("stats.html", stats=stats)
     
+@app.route("/cycle-rally")
+def cycle_rally():
+    return render_template("cycle_rally.html", title="Cycle Rally | FIT@1100")
 
 if __name__ == "__main__":
     app.run(debug=True)
