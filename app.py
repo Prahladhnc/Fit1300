@@ -23,7 +23,6 @@ def home():
     session = Session()
     total_athletes = get_member_count_from_csv()
 
-
     # Calculate total distance for each sport type
     total_run = session.query(func.sum(Activity.distance)).filter(Activity.type == "Run").scalar() or 0
     total_ride = session.query(func.sum(Activity.distance)).filter(Activity.type == "Ride").scalar() or 0
