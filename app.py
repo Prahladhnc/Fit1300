@@ -2,13 +2,27 @@
 from flask import Flask, render_template
 from sqlalchemy import func
 from models import Session, Activity
+import csv
 
 app = Flask(__name__)
+def get_member_count_from_csv(csv_path="status.csv"):
+    try:
+        with open(csv_path, "r") as file:
+            reader = list(csv.DictReader(file))
+            if not reader:
+                return 0
+            last_row = reader[-1]
+            return int(last_row.get("member_count", 0))
+    except Exception as e:
+        print("Error reading CSV:", e)
+        return 0
+
 
 @app.route("/")
 def home():
     session = Session()
-    total_athletes = session.query(func.count(func.distinct(Activity.athlete_name))).scalar() or 0
+    total_athletes = get_member_count_from_csv()
+
 
     # Calculate total distance for each sport type
     total_run = session.query(func.sum(Activity.distance)).filter(Activity.type == "Run").scalar() or 0
