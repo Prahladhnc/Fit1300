@@ -51,10 +51,10 @@ def show_activities():
 def show_stats():
     session = Session()
 
-    # Get all unique sport types
+    # Existing Stats Logic
     sport_types = [r[0] for r in session.query(Activity.type).distinct()]
-
     stats = []
+
     for sport in sport_types:
         q = session.query(Activity).filter(Activity.type == sport)
 
@@ -63,7 +63,6 @@ def show_stats():
         total_distance_m = sum([a.distance or 0 for a in q])
         total_elapsed_s = sum([a.elapsed_time or 0 for a in q])
 
-        # Convert units
         total_distance_km = total_distance_m / 1000
         total_hours = int(total_elapsed_s // 3600)
         total_minutes = int((total_elapsed_s % 3600) // 60)
@@ -77,7 +76,26 @@ def show_stats():
         })
 
     session.close()
-    return render_template("stats.html", stats=stats)
+
+    # NEW: Load CSV for charts
+    import pandas as pd
+    df = pd.read_csv("status.csv")
+
+    df["date"] = pd.to_datetime(df["timestamp"]).dt.strftime("%Y-%m-%d")
+
+    dates = df["date"].tolist()
+    athlete_count = df["member_count"].tolist()
+    distance_cycled = df["total_ride_km"].tolist()
+    distance_run = df["total_run_km"].tolist()
+
+    return render_template(
+    "stats.html",
+    stats=stats,
+    dates=dates,
+    members=athlete_count,     # rename
+    cycle=distance_cycled,     # rename
+    run=distance_run           # rename
+)
     
 @app.route("/cycle-rally")
 def cycle_rally():
